@@ -34,7 +34,11 @@ run_switch = html.Div(
     ]
 )
 
-# Create graphs for single run
+# -------------------------------
+# Create single run components
+# -------------------------------
+
+# Timeline graph
 timeline_graph_component = html.Div(
     [
         dcc.Markdown(children="### Timeline"),
@@ -87,7 +91,7 @@ alert_container = html.Div(
     style={"display": "flex"}
 )
 
-# Number of blue
+# Number of blue platforms killed
 blue_killed_container = html.Div(
     [
         html.Span("3", style={"font-size": "25px", "font-weight": "bold", "color": "blue", "display": "inline-block"}),
@@ -97,15 +101,6 @@ blue_killed_container = html.Div(
 )
 
 
-# All runs div
-all_runs = html.Div(
-    [
-        html.P("ALL RUNS")
-    ],
-    id="all-runs-components",
-    style={"display": "block"}  # This line is changed by single_or_all function
-)
-
 # Chord diagram (test)
 chord_diagram_container = html.Div(
     [
@@ -114,6 +109,7 @@ chord_diagram_container = html.Div(
     style={"display": "inline-block"}
 )
 
+# Chord diagram and timeline together in one div
 chord_and_timeline_container = html.Div(
     [
         chord_diagram_container,
@@ -122,7 +118,7 @@ chord_and_timeline_container = html.Div(
     style={"display": "flex"}
 )
 
-# Single run div
+# SINGLE DIV COMPONENTS TOGETHER
 single_run = html.Div(
     [
         alert_container,
@@ -136,7 +132,18 @@ single_run = html.Div(
     id="single-run-components",
     style={"display": "none"}  # This line is changed by single_or_all function
 )
+# -------------------------------
+# Create all runs components
+# -------------------------------
 
+# All runs div
+all_runs = html.Div(
+    [
+        html.P("ALL RUNS")
+    ],
+    id="all-runs-components",
+    style={"display": "block"}  # This line is changed by single_or_all function
+)
 
 # -------------------------------
 # Customise layout
@@ -149,7 +156,7 @@ app.layout = dbc.Container(
 # Call back functions
 # -------------------------------
 
-
+# Displays and hides single run and all runs div
 @app.callback(
     [
         Output(component_id="single-run-components", component_property="style"),
